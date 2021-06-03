@@ -1,4 +1,5 @@
 
+import 'package:buy_now/app/modules/orders-list/orders_list_controller.dart';
 import 'package:get/get.dart';
 
 class OrderListBinding implements Bindings {
@@ -6,6 +7,6 @@ class OrderListBinding implements Bindings {
   @override
   void dependencies() {
 
-    // Get.lazyPut<HomeController>(() => HomeController( HomeRepository(MyApiGetConnect())) );
+    Get.lazyPut<OrderListController>(() => OrderListController() );
   }
 }
