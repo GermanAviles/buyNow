@@ -4,6 +4,13 @@ import 'package:get/get.dart';
 
 class OrderListController extends GetxController {
   // Escribe tu lógica aquí...
+  BuildContext _context;
+
+  get context => _context;
+
+  updateContext( BuildContext context ) {
+    _context = context;
+  }
 
   @override
   void onInit() {

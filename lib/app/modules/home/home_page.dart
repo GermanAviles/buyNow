@@ -5,6 +5,7 @@ import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   // const HomePage({ Key? key }) : super(key: key);
@@ -18,7 +19,12 @@ class HomePage extends StatelessWidget {
           child: Scaffold(
             drawer: DrawerMenu().build(),
             appBar: AppBar(
-              title: Text('Compras PRO'),
+              title: Text(
+                'Compras PRO',
+                style: GoogleFonts.ubuntu(
+                  fontWeight: FontWeight.w500
+                ),
+              ),
               actions: [
                 IconButton(
                   tooltip: 'Carrito compras',

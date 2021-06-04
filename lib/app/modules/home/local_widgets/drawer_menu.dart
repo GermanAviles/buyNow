@@ -1,6 +1,7 @@
 import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DrawerMenu {
 
@@ -15,7 +16,7 @@ class DrawerMenu {
             ),
             child: Text(
               'Drawer Header',
-              style: TextStyle(
+              style: GoogleFonts.ubuntu(
                 color: Colors.white,
                 fontSize: 24,
               ),
@@ -29,7 +30,7 @@ class DrawerMenu {
             ),
             title: Text(
               'Inicio',
-              style: TextStyle(
+              style: GoogleFonts.ubuntu(
                 fontSize: 18
               ),
             ),
@@ -41,7 +42,7 @@ class DrawerMenu {
             ),
             title: Text(
               'Carrito',
-              style: TextStyle(
+              style: GoogleFonts.ubuntu(
                 fontSize: 18
               ),
             ),
@@ -53,7 +54,7 @@ class DrawerMenu {
               ),
               title: Text(
                 'Compras',
-                style: TextStyle(
+                style: GoogleFonts.ubuntu(
                   fontSize: 18
                 ),
               ),

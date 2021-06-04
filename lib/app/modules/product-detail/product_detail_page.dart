@@ -2,6 +2,7 @@
 import 'package:buy_now/app/modules/product-detail/product_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final FocusNode _focusCantidad = FocusNode();
@@ -63,15 +64,11 @@ class ProductDetailPage extends StatelessWidget {
                   // height: 50,
                   margin: EdgeInsets.only( bottom: 25 ),
                   width: width,
-                  // decoration: BoxDecoration(
-                  //   color: Colors.blue
-                  // ),
                   child: Text(
                     'Reloj para mujer cassio con diamantes de 30 kilates',
                     // overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 20,
-
                     ),
                   ),
                 ),
@@ -84,7 +81,7 @@ class ProductDetailPage extends StatelessWidget {
                   // ),
                   child: Text(
                     '\$ 200.000',
-                    style: TextStyle(
+                    style: GoogleFonts.ubuntu(
                       fontWeight: FontWeight.w500,
                       fontSize: 30
                     ),
@@ -96,6 +93,8 @@ class ProductDetailPage extends StatelessWidget {
                   child: TextField(
                     obscureText: false,
                     decoration: InputDecoration(
+                      labelStyle: GoogleFonts.ubuntu(),
+                      hintStyle: GoogleFonts.ubuntu(),
                       labelText: 'Cantidad a comprar: 1',
                       hintText: '1',
                       filled: true,
@@ -125,7 +124,7 @@ class ProductDetailPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
                         'Comprar ahora',
-                        style: TextStyle(
+                        style: GoogleFonts.ubuntu(
                           color: Colors.white,
                           fontSize: 18
                         ),
@@ -146,7 +145,7 @@ class ProductDetailPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
                         'Agregar al carrito',
-                        style: TextStyle(
+                        style: GoogleFonts.ubuntu(
                           color: Colors.blue,
                           fontSize: 18,
                           fontWeight: FontWeight.w600
@@ -163,7 +162,7 @@ class ProductDetailPage extends StatelessWidget {
                   margin: EdgeInsets.only( bottom: 20 ),
                   child: Text(
                     'Descripción',
-                    style: TextStyle(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 20
                     ),
                   ),
@@ -171,7 +170,7 @@ class ProductDetailPage extends StatelessWidget {
                 Container(
                   child: Text(
                     'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por e',
-                    style: TextStyle(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 20
                     ),
                   ),

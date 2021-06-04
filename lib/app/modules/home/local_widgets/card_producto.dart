@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meta/meta.dart' show required;
 
 class CardProducto{
@@ -44,8 +45,8 @@ class CardProducto{
                     margin: EdgeInsets.only( bottom: 10 ),
                     child: Text(
                       this.nombre,
-                      style: TextStyle(
-                        fontSize: 16
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 18
                       ),
                     ),
                   ),
@@ -53,18 +54,18 @@ class CardProducto{
                     margin: EdgeInsets.only( bottom: 10 ),
                     child: Text(
                       '\$ ${this.precio}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500
                       ),
                     ),
                   ),
                   Container(
                     child: Text(
                       this.descripcion,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
+                      // overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 16,
                         color: Colors.black
                       ),
                     ),
