@@ -1,18 +1,26 @@
 
 // import 'package:buy_now/app/data/models/product_model.dart';
+import 'package:buy_now/app/data/models/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  obtenerProductos() async {
+  Stream<QuerySnapshot<ProductModel>> obtenerProductos() {
+    return _firestore.collection('productos').withConverter(
+      fromFirestore: (snapshots, _) => ProductModel.formJson( snapshots.data() ),
+      toFirestore: (producto, _) => producto.toJson()
+    ).snapshots();
+  }
+
+  Future<ProductModel> getProduct( String uid ) async {
     try {
-      final productos = await _firestore.collection("productos").get();
-      // final productossda = _firestore.collection("productos").snapshots();
-      print(productos);
+      DocumentSnapshot doc = await _firestore.collection('productos').doc( uid ).get();
+      return ProductModel.fromDocumentSnapshot( doc );
     } catch (e) {
       print(e);
+      rethrow;
     }
   }
 

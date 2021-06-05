@@ -47,21 +47,24 @@ class HomePage extends StatelessWidget {
       width: width,
       height: height,
       padding: EdgeInsets.symmetric( vertical: 10, horizontal: 10 ),
-      child: ListView.builder(
-        itemCount: 3,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: (){ Get.toNamed( Routes.PRODUCTDETAIL ); },
-            child: CardProducto(
-              height: 150,
-              width: width,
-              nombre: 'Reloj Casio',
-              precio: 100000,
-              descripcion: 'Probando descripción'
-            ).build(),
-          );
-        }
-      ),
+      child: Obx((){
+        final productos = _.productos;
+        return ListView.builder(
+          itemCount: productos.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: (){ Get.toNamed( Routes.PRODUCTDETAIL, parameters: { "id": productos[index].id } ); },
+              child: CardProducto(
+                height: 150,
+                width: width,
+                nombre: productos[index].nombre,
+                precio: productos[index].precio,
+                descripcion: productos[index].descripcion
+              ).build(),
+            );
+          }
+        );
+      })
     );
   }
 }

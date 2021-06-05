@@ -60,33 +60,33 @@ class ProductDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  // height: 50,
-                  margin: EdgeInsets.only( bottom: 25 ),
-                  width: width,
-                  child: Text(
-                    'Reloj para mujer cassio con diamantes de 30 kilates',
-                    // overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.ubuntu(
-                      fontSize: 20,
+                Obx((){
+                  return Container(
+                    // height: 50,
+                    margin: EdgeInsets.only( bottom: 25 ),
+                    width: width,
+                    child: Text(
+                      _.product.nombre ?? '',
+                      // overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  // height: 50,
-                  width: width,
-                  margin: EdgeInsets.only( bottom: 10 ),
-                  // decoration: BoxDecoration(
-                  //   color: Colors.blue
-                  // ),
-                  child: Text(
-                    '\$ 200.000',
-                    style: GoogleFonts.ubuntu(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30
+                  );
+                }),
+                Obx((){
+                  return Container(
+                    width: width,
+                    margin: EdgeInsets.only( bottom: 10 ),
+                    child: Text(
+                      '\$ ${_.product.precio}' ?? '',
+                      style: GoogleFonts.ubuntu(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 30
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                }),
 
                 Container(
                   margin: EdgeInsets.only( top: 30 ),
@@ -167,14 +167,16 @@ class ProductDetailPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  child: Text(
-                    'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por e',
+                Obx((){
+                  return Container(
+                    child: Text(
+                    _.product.descripcion ?? '',
                     style: GoogleFonts.ubuntu(
                       fontSize: 20
                     ),
                   ),
-                ),
+                  );
+                }),
               ],
             )
           )

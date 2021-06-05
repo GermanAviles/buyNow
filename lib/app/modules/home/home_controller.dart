@@ -1,4 +1,7 @@
 
+import 'package:buy_now/app/data/models/product_model.dart';
+import 'package:buy_now/app/data/services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 // import 'package:meta/meta.dart' show required;
 import 'package:get/get.dart';
@@ -6,16 +9,38 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
 
   // final HomeRepository _homeRepository = Get.find<HomeRepository>();
-  BuildContext _context;
+  BuildContext         _context;
+  final                firestoreService   = Get.find<Database>();
+  RxList<ProductModel> _productos         = <ProductModel>[].obs;
 
-  get context => _context;
+  BuildContext          get context   => _context;
+  RxList<ProductModel>  get productos => _productos;
 
   updateContext( BuildContext context ) {
     _context = context;
   }
-  // Rx<>
-  // final _obj = ''.obs;
 
-  // set obj(value) => this._obj.value = value;
-  // get obj => this._obj.value;
+  @override
+  void onInit() {
+    super.onInit();
+
+    Stream<QuerySnapshot<ProductModel>> productos = this.firestoreService.obtenerProductos();
+    productos.listen((event) {
+      _productos.clear();
+      for( final producEvent in event.docs ){
+        _productos.add( producEvent.data() );
+      }
+    });
+
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
 }
