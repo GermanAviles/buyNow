@@ -1,5 +1,5 @@
 import 'package:buy_now/app/data/models/product_model.dart';
-import 'package:buy_now/app/data/services/database.dart';
+import 'package:buy_now/app/data/services/database_products.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,7 +8,7 @@ class ProductDetailController extends GetxController {
 
   BuildContext _context;
 
-  final            firestoreService   = Get.find<Database>();
+  final            firestoreService   = Get.find<DatabaseProducts>();
   Rx<ProductModel> _productModel      = ProductModel().obs;
 
   BuildContext get context => _context;

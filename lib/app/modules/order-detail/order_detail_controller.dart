@@ -1,3 +1,5 @@
+import 'package:buy_now/app/data/models/order_model.dart';
+import 'package:buy_now/app/data/services/database_orders.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,16 +7,25 @@ import 'package:get/get.dart';
 class OrderDetailController extends GetxController {
 
   BuildContext _context;
+  final        firestoreService   = Get.find<DatabaseOrders>();
+  Rx<OrderModel> _order           = OrderModel().obs;
 
-  get context => _context;
+  BuildContext  get context => _context;
+  OrderModel    get order   => _order.value;
 
   updateContext( BuildContext context ) {
     _context = context;
   }
 
+  getOrder() async {
+    final orderUID = Get.arguments;
+    _order.value = await firestoreService.getOrder( orderUID );
+  }
+
   @override
   void onInit() {
     super.onInit();
+    getOrder();
   }
 
   @override

@@ -39,23 +39,26 @@ class OrderListPage extends StatelessWidget {
       width: width,
       height: height,
       padding: EdgeInsets.symmetric( horizontal: 10, vertical: 20 ),
-      child: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (BuildContext context, index){
-          return GestureDetector(
-            onTap: () {
-              Get.toNamed( Routes.ORDERDETAIL, arguments: '3904123' );
-            },
-            child: CardOrder(
-              id: '3904123',
-              fechaCompra: DateFormat('dd/MM/yyyy').format( DateTime.now() ),
-              height: 100,
-              width: width,
-              totalCompra: 200000
-            ).build(),
-          );
-        }
-      ),
+      child: Obx((){
+        return ListView.builder(
+          itemCount: _.orders.length,
+          itemBuilder: (BuildContext context, index){
+            final order = _.orders[index];
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed( Routes.ORDERDETAIL, arguments: order.id );
+              },
+              child: CardOrder(
+                id: '${order.numero}',
+                fechaCompra: order.fechaCompra,
+                height: 100,
+                width: width,
+                totalCompra: order.totalCompra
+              ).build(),
+            );
+          }
+        );
+      }),
     );
   }
 }

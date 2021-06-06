@@ -1,6 +1,6 @@
 
 import 'package:buy_now/app/data/models/product_model.dart';
-import 'package:buy_now/app/data/services/database.dart';
+import 'package:buy_now/app/data/services/database_products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 // import 'package:meta/meta.dart' show required;
@@ -10,7 +10,7 @@ class HomeController extends GetxController {
 
   // final HomeRepository _homeRepository = Get.find<HomeRepository>();
   BuildContext         _context;
-  final                firestoreService   = Get.find<Database>();
+  final                firestoreService   = Get.find<DatabaseProducts>();
   RxList<ProductModel> _productos         = <ProductModel>[].obs;
 
   BuildContext          get context   => _context;

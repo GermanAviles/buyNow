@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
 
 class CardOrder{
 
   String id;
   int totalCompra;
-  String fechaCompra;
+  DateTime fechaCompra;
   double width;
   double height;
 
@@ -97,7 +98,7 @@ class CardOrder{
                               Expanded(
                                 flex: 1,
                                 child: Text(
-                                  fechaCompra,
+                                  DateFormat('dd/MM/yyyy').format( fechaCompra ),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 16,

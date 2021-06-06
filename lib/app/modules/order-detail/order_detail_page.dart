@@ -44,11 +44,13 @@ class OrderDetailPage extends StatelessWidget {
         children: [
           Flexible(
             flex: 2,
-            child: CardDetalle(
-              numero: '123123',
-              fecha: DateFormat('dd/MM/yyyy').format( DateTime.now() ),
-              total: 1123001
-            ).build()
+            child: Obx((){
+              return CardDetalle(
+                numero: _.order.numero ?? '',
+                fecha: DateFormat('dd/MM/yyyy').format( _.order.fechaCompra ?? DateTime.now() ),
+                total: _.order.totalCompra ?? 0
+              ).build();
+            })
           ),
           Flexible(
             flex: 6,
@@ -90,19 +92,21 @@ class OrderDetailPage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 10,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, index){
-                        return ItemProduc(
-                          width: width,
-                          height: 90,
-                          cantidad: 1,
-                          nombre: 'Tenis asdasdpasd',
-                          valor: 117900
+                    child: Obx((){
+                      return ListView.builder(
+                        itemCount: _.order.productos?.length ?? 0,
+                        itemBuilder: (BuildContext context, index){
+                          return ItemProduc(
+                            width: width,
+                            height: 90,
+                            cantidad: _.order.productos[ index ]['cantidad'],
+                            nombre: _.order.productos[ index ]['nombre'],
+                            valor: _.order.productos[ index ]['precio']
 
-                        ).build();
-                      }
-                    )
+                          ).build();
+                        }
+                      );
+                    })
                   ),
                 ],
               ),

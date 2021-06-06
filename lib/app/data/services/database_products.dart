@@ -3,7 +3,7 @@
 import 'package:buy_now/app/data/models/product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Database {
+class DatabaseProducts {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
