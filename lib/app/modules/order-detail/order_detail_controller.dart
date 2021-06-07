@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 
 class OrderDetailController extends GetxController {
 
-  BuildContext _context;
-  final        firestoreService   = Get.find<DatabaseOrders>();
-  Rx<OrderModel> _order           = OrderModel().obs;
+  BuildContext    _context;
+  final           firestoreService    = Get.find<DatabaseOrders>();
+  Rx<OrderModel>  _order              = OrderModel().obs;
 
   BuildContext  get context => _context;
   OrderModel    get order   => _order.value;

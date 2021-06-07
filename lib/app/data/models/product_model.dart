@@ -9,18 +9,21 @@ class ProductModel {
     this.nombre,
     this.descripcion,
     this.precio,
+    this.sku
   });
 
   String id;
   String nombre;
   String descripcion;
   int precio;
+  String sku;
 
   ProductModel.fromDocumentSnapshot( DocumentSnapshot doc ) {
     id           = doc.id;
     nombre       = doc["nombre"];
     descripcion  = doc["descripcion"];
     precio       = doc["precio"];
+    sku          = doc["sku"];
   }
 
   ProductModel.formJson( Map<String, Object> json ) : this(
@@ -28,7 +31,8 @@ class ProductModel {
     id:           (json['id'] as String),
     nombre:       (json['nombre'] as String),
     precio:       (json['precio'] as int),
-    descripcion:  (json['descripcion'] as String)
+    descripcion:  (json['descripcion'] as String),
+    sku:          (json['sku'] as String)
   );
 
   Map<String, Object> toJson() {
@@ -36,7 +40,8 @@ class ProductModel {
       'id':          id,
       'nombre':      nombre,
       'precio':      precio,
-      'descripcion': descripcion
+      'descripcion': descripcion,
+      'sku':         sku
     };
   }
 

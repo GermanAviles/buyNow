@@ -23,4 +23,10 @@ class DatabaseOrders {
     }
   }
 
+  createOrder( Map<String, dynamic> order ) {
+    String uidOrder = _firestore.collection('pedidos').doc().toString();
+    order['id'] = uidOrder;
+    _firestore.collection('pedidos').doc(uidOrder).set( order );
+  }
+
 }

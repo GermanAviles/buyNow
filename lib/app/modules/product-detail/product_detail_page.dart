@@ -92,6 +92,8 @@ class ProductDetailPage extends StatelessWidget {
                   margin: EdgeInsets.only( top: 30 ),
                   child: TextField(
                     obscureText: false,
+                    focusNode: _focusCantidad,
+                    onChanged: _.updateCantidadComprar,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.ubuntu(),
                       hintStyle: GoogleFonts.ubuntu(),
@@ -140,7 +142,7 @@ class ProductDetailPage extends StatelessWidget {
                     height: 45,
                     minWidth: width,
                     child: MaterialButton(
-                      onPressed: (){},
+                      onPressed: _.agregarProductoCarrito,
                       color: Colors.blue[50],
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
