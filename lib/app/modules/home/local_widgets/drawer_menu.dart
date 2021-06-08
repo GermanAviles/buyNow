@@ -14,12 +14,22 @@ class DrawerMenu {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text(
-              'Drawer Header',
-              style: GoogleFonts.ubuntu(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  child: Icon( Icons.perm_identity_rounded ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric( horizontal: 10 ),
+                  child: Text(
+                    'Usuario pro',
+                    style: GoogleFonts.ubuntu(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           ListTile(
