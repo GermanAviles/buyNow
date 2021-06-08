@@ -76,6 +76,7 @@ class CartController extends GetxController {
     final orderId = await orderService.createOrder( orden );
     await shoppingCartService.updateStateShoppingCart(_cart.value.carritoId, 'completed');
     _cargando.value = false;
+    _cart.value = CartModel();
     Navigator.pushNamed(context, Routes.ORDERDETAIL, arguments: { 'uid': orderId, 'goHome': true });
   }
 
