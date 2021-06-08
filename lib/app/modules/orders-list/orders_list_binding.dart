@@ -9,6 +9,6 @@ class OrderListBinding implements Bindings {
   void dependencies() {
 
     Get.lazyPut<OrderListController>(() => OrderListController() );
-    Get.lazyPut<DatabaseOrders>(() => DatabaseOrders(), fenix: true);
+    Get.lazyPut<DatabaseOrders>(() => DatabaseOrders() );
   }
 }

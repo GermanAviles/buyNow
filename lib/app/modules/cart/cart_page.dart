@@ -55,30 +55,47 @@ class CartPage extends StatelessWidget {
         height: height,
         child: Column(
           children: [
-            Expanded(
-              flex: 11,
-              child: GetBuilder<CartController>(
-                id: 'lista-productos',
-                builder: (_){
-                  final products = _.cart.value.productos;
-                  return ListView.builder(
-                    padding: EdgeInsets.symmetric( vertical: 10, horizontal: 5 ),
-                    itemCount: products?.length ?? 0,
-                    itemBuilder: (BuildContext context, index) {
-                      return ProductCard(
-                        url: products[index]['imgURL'],
-                        nombre: products[index]['nombre'],
-                        cantidad: products[index]['cantidad'],
-                        precio: products[index]['precio'],
-                        width: width,
-                        height: 150,
-                        index: index
-                      ).build();
+            Obx(() {
+              return _.cart.value.productos != null ?
+                Expanded(
+                  flex: 11,
+                  child: GetBuilder<CartController>(
+                    id: 'lista-productos',
+                    builder: (_){
+                      final products = _.cart.value.productos;
+                      return ListView.builder(
+                        padding: EdgeInsets.symmetric( vertical: 10, horizontal: 5 ),
+                        itemCount: products?.length ?? 0,
+                        itemBuilder: (BuildContext context, index) {
+                          return ProductCard(
+                            url: products[index]['imgURL'],
+                            nombre: products[index]['nombre'],
+                            cantidad: products[index]['cantidad'],
+                            precio: products[index]['precio'],
+                            width: width,
+                            height: 150,
+                            index: index
+                          ).build();
+                        },
+                      );
                     },
-                  );
-                },
-              )
-            ),
+                  )
+                ) :
+              Expanded(
+                flex: 11,
+                child: Center(
+                  child: Text(
+                    'No tienes productos en tu carrito',
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 26,
+                      color: Colors.black38
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }),
+
             Expanded(
               flex: 3,
               child: Container(

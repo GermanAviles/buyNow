@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class DependencyInjection{
 
   static void init() {
-    Get.lazyPut(() => DatabaseProducts(), fenix: true );
-    Get.lazyPut(() => DatabaseShoppingCart(), fenix: true );
-    Get.lazyPut(() => DatabaseOrders(), fenix: true );
+    Get.lazyPut(() => DatabaseProducts() );
+    Get.lazyPut(() => DatabaseShoppingCart() );
+    Get.lazyPut(() => DatabaseOrders() );
     // Get.lazyPut(() => (), fenix: true );
   }
 }
