@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
 
-  // final HomeRepository _homeRepository = Get.find<HomeRepository>();
   BuildContext         _context;
   final                firestoreService   = Get.find<DatabaseProducts>();
   RxList<ProductModel> _productos         = <ProductModel>[].obs;

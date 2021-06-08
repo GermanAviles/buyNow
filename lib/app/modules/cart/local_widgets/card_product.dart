@@ -3,7 +3,10 @@ import 'package:buy_now/app/modules/cart/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
+
+final currencyFormat = new NumberFormat("#,##0", "es_CO");
 
 class ProductCard {
 
@@ -120,7 +123,7 @@ class ProductCard {
                               ),
                               Container(
                                 child: Text(
-                                  '\$ $precio',
+                                  '\$ ${currencyFormat.format( precio ?? '' )}',
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 20,

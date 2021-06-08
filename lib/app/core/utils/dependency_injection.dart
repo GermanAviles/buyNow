@@ -9,7 +9,7 @@ class DependencyInjection{
   static void init() {
     Get.lazyPut(() => DatabaseProducts() );
     Get.lazyPut(() => DatabaseShoppingCart() );
-    Get.lazyPut(() => DatabaseOrders() );
+    Get.lazyPut(() => DatabaseOrders(), fenix: true);
     // Get.lazyPut(() => (), fenix: true );
   }
 }

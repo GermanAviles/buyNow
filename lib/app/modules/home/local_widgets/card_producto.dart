@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
 
+// final currencyFormat = new NumberFormat("#,##0.00", "es_CO");
+// final formatCurrency = new NumberFormat.simpleCurrency();
+// final currencyFormat = new NumberFormat.currency(locale: "es_CO", symbol: "");
+final currencyFormat = new NumberFormat("#,##0", "es_CO");
 class CardProducto{
 
   String  nombre;
@@ -53,7 +58,7 @@ class CardProducto{
                   Container(
                     margin: EdgeInsets.only( bottom: 10 ),
                     child: Text(
-                      '\$ ${this.precio}',
+                      '\$ ${ currencyFormat.format( precio ) }',
                       style: GoogleFonts.ubuntu(
                         fontSize: 22,
                         fontWeight: FontWeight.w500

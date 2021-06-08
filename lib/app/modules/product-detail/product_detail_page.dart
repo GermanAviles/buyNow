@@ -5,6 +5,9 @@ import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+final currencyFormat = new NumberFormat("#,##0", "es_CO");
 
 class ProductDetailPage extends StatelessWidget {
   final FocusNode _focusCantidad = FocusNode();
@@ -94,7 +97,7 @@ class ProductDetailPage extends StatelessWidget {
                     width: width,
                     margin: EdgeInsets.only( bottom: 10 ),
                     child: Text(
-                      '\$ ${_.product?.precio ?? '' }',
+                      '\$ ${ currencyFormat.format( _.product?.precio ?? '' ) }',
                       style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.w500,
                         fontSize: 30

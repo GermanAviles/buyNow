@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
 
+final currencyFormat = new NumberFormat("#,##0", "es_CO");
+
 class CardOrder{
 
   String id;
@@ -126,7 +128,7 @@ class CardOrder{
                           ),
                         ),
                         Text(
-                          '\$ $totalCompra',
+                          '\$ ${currencyFormat.format( totalCompra )}',
                           style: GoogleFonts.ubuntu(
                             fontSize: 16,
                             fontWeight: FontWeight.w600
