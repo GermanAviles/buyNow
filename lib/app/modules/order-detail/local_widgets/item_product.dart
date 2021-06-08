@@ -9,8 +9,10 @@ class ItemProduc {
   int    valor;
   double width;
   double height;
+  String  url;
 
   ItemProduc({
+    @required this.url,
     @required this.nombre,
     @required this.cantidad,
     @required this.valor,
@@ -31,9 +33,7 @@ class ItemProduc {
             child: Container(
               width: 90,
               height: 90,
-              decoration: BoxDecoration(
-                color: Colors.blue
-              ),
+              child: Image.network( url ),
             ),
           ),
           Flexible(

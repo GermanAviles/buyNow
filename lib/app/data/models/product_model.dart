@@ -9,10 +9,12 @@ class ProductModel {
     this.nombre,
     this.descripcion,
     this.precio,
-    this.sku
+    this.sku,
+    this.imgURL
   });
 
   String id;
+  String imgURL;
   String nombre;
   String descripcion;
   int precio;
@@ -24,6 +26,7 @@ class ProductModel {
     descripcion  = doc["descripcion"];
     precio       = doc["precio"];
     sku          = doc["sku"];
+    imgURL       = doc["imgURL"];
   }
 
   ProductModel.formJson( Map<String, Object> json ) : this(
@@ -32,7 +35,8 @@ class ProductModel {
     nombre:       (json['nombre'] as String),
     precio:       (json['precio'] as int),
     descripcion:  (json['descripcion'] as String),
-    sku:          (json['sku'] as String)
+    sku:          (json['sku'] as String),
+    imgURL:       (json['imgURL'] as String)
   );
 
   Map<String, Object> toJson() {
@@ -41,7 +45,8 @@ class ProductModel {
       'nombre':      nombre,
       'precio':      precio,
       'descripcion': descripcion,
-      'sku':         sku
+      'sku':         sku,
+      'imgURL':      imgURL
     };
   }
 

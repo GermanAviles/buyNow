@@ -66,6 +66,7 @@ class CartPage extends StatelessWidget {
                     itemCount: products?.length ?? 0,
                     itemBuilder: (BuildContext context, index) {
                       return ProductCard(
+                        url: products[index]['imgURL'],
                         nombre: products[index]['nombre'],
                         cantidad: products[index]['cantidad'],
                         precio: products[index]['precio'],

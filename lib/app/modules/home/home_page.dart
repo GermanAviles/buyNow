@@ -55,6 +55,7 @@ class HomePage extends StatelessWidget {
             return GestureDetector(
               onTap: (){ Get.toNamed( Routes.PRODUCTDETAIL, parameters: { "id": productos[index].id } ); },
               child: CardProducto(
+                url: productos[index].imgURL,
                 height: 150,
                 width: width,
                 nombre: productos[index].nombre,

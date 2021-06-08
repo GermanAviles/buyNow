@@ -7,10 +7,12 @@ class CardProducto{
   String  nombre;
   int     precio;
   String  descripcion;
+  String  url;
   double width;
   double height;
 
   CardProducto({
+    @required this.url,
     @required this.nombre,
     @required this.precio,
     @required this.descripcion,
@@ -29,9 +31,7 @@ class CardProducto{
           Flexible(
             flex: 4,
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.blue
-              ),
+              child: Image.network( url ),
             )
           ),
           Flexible(

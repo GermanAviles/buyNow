@@ -61,9 +61,12 @@ class ProductDetailPage extends StatelessWidget {
           Container(
             width: width,
             height: height * 0.3,
-            decoration: BoxDecoration(
-              color: Colors.blue
-            ),
+            child: GetBuilder<ProductDetailController>(
+              id: 'img-product',
+              builder: (_){
+                return Image.network( _.product.imgURL ?? '');
+              },
+            )
           ),
           Container(
             padding: EdgeInsets.symmetric( horizontal: 20 ),
@@ -91,7 +94,7 @@ class ProductDetailPage extends StatelessWidget {
                     width: width,
                     margin: EdgeInsets.only( bottom: 10 ),
                     child: Text(
-                      '\$ ${_.product.precio}' ?? '',
+                      '\$ ${_.product?.precio ?? '' }',
                       style: GoogleFonts.ubuntu(
                         fontWeight: FontWeight.w500,
                         fontSize: 30

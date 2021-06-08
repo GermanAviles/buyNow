@@ -13,8 +13,10 @@ class ProductCard {
   double  width;
   double  height;
   int     index;
+  String  url;
 
   ProductCard({
+    @required this.url,
     @required this.nombre,
     @required this.cantidad,
     @required this.precio,
@@ -40,7 +42,7 @@ class ProductCard {
           Flexible(
             flex: 4,
             child: Container(
-              decoration: BoxDecoration( color: Colors.blue ),
+              child: Image.network( url ),
             )
           ),
           Flexible(

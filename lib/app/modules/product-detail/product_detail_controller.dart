@@ -38,7 +38,8 @@ class ProductDetailController extends GetxController {
       'cantidad': cantidadComprar,
       'precio': _productModel.value.precio,
       'nombre': _productModel.value.nombre,
-      'producto_id': _productModel.value.id
+      'producto_id': _productModel.value.id,
+      'imgURL'     : _productModel.value.imgURL
     };
 
     final carritos = await carritoService.getPendingCart();
@@ -80,6 +81,7 @@ class ProductDetailController extends GetxController {
   getProduct( String uid ) async {
    _productModel.value = await firestoreService.getProduct(uid);
     _cargando.value = false;
+    update(['img-product']);
   }
 
   @override

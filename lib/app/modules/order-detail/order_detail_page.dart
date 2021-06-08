@@ -111,6 +111,7 @@ class OrderDetailPage extends StatelessWidget {
                         itemCount: _.order.productos?.length ?? 0,
                         itemBuilder: (BuildContext context, index){
                           return ItemProduc(
+                            url: _.order.productos[index]['imgURL'],
                             width: width,
                             height: 90,
                             cantidad: _.order.productos[ index ]['cantidad'],
