@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                 IconButton(
                   tooltip: 'Carrito compras',
                   icon: Icon( Icons.shopping_cart_outlined ),
-                  onPressed: (){}
+                  onPressed: () => Navigator.pushNamed(context, Routes.CART)
                 )
               ],
             ),

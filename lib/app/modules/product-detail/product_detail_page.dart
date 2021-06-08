@@ -1,5 +1,6 @@
 
 import 'package:buy_now/app/modules/product-detail/product_detail_controller.dart';
+import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +15,7 @@ class ProductDetailPage extends StatelessWidget {
         _.updateContext( context );
         return SafeArea(
           child: Scaffold(
-            appBar: appbar(),
+            appBar: appbar( context ),
             body: body(_),
           )
         );
@@ -22,14 +23,14 @@ class ProductDetailPage extends StatelessWidget {
     );
   }
 
-  Widget appbar() {
+  Widget appbar( BuildContext context ) {
     return AppBar(
       title: Text('Producto'),
       actions: [
         IconButton(
           tooltip: 'Carrito compras',
           icon: Icon( Icons.shopping_cart_outlined ),
-          onPressed: (){}
+          onPressed: () => Navigator.pushNamed(context, Routes.CART)
         )
       ],
     );
@@ -121,7 +122,7 @@ class ProductDetailPage extends StatelessWidget {
                     height: 45,
                     minWidth: width,
                     child: MaterialButton(
-                      onPressed: (){},
+                      onPressed: () => _.agregarProductoCarrito(true),
                       color: Colors.blue,
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(
@@ -142,7 +143,7 @@ class ProductDetailPage extends StatelessWidget {
                     height: 45,
                     minWidth: width,
                     child: MaterialButton(
-                      onPressed: _.agregarProductoCarrito,
+                      onPressed: () => _.agregarProductoCarrito( false ),
                       color: Colors.blue[50],
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Text(

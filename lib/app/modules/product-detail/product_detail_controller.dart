@@ -1,6 +1,7 @@
 import 'package:buy_now/app/data/models/product_model.dart';
 import 'package:buy_now/app/data/services/database_products.dart';
 import 'package:buy_now/app/data/services/database_shopping_cart.dart';
+import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -29,16 +30,22 @@ class ProductDetailController extends GetxController {
     }
   }
 
-  agregarProductoCarrito() async {
-    final List<Map<String, dynamic>> productosDelCarrito = [];
+  agregarProductoCarrito( bool navegar ) async {
 
     Map<String, dynamic> productJson = {
       'cantidad': cantidadComprar,
       'precio': _productModel.value.precio,
+      'nombre': _productModel.value.nombre,
       'producto_id': _productModel.value.id
     };
 
     final carritos = await carritoService.getPendingCart();
+
+    agregarProducto( productJson, carritos, navegar );
+  }
+
+  agregarProducto( Map<String, dynamic> product, carritos, bool navegar )async {
+    final List<Map<String, dynamic>> productosDelCarrito = [];
 
     if (carritos.docs.length > 0) {
       final idCarritoActual = carritos.docs.first.id;
@@ -51,13 +58,17 @@ class ProductDetailController extends GetxController {
         }
       }
 
-      productosDelCarrito.add( productJson );
+      productosDelCarrito.add( product );
       carrito['productos'] = productosDelCarrito;
       await carritoService.addProductToShoppingCart(carritosProducto.docs.first.id, productosDelCarrito);
     } else {
-      productosDelCarrito.add( productJson );
+      productosDelCarrito.add( product );
       final uids = await carritoService.createShoppingCart();
       carritoService.addProductToShoppingCart(uids['uidProductsCart'], productosDelCarrito);
+    }
+
+    if (navegar) {
+      Navigator.pushNamed(context, Routes.CART);
     }
   }
 
