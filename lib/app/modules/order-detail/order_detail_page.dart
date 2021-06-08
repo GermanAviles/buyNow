@@ -1,4 +1,5 @@
 
+import 'package:buy_now/app/global_widgets/loading.dart';
 import 'package:buy_now/app/modules/order-detail/local_widgets/card_detalle.dart';
 import 'package:buy_now/app/modules/order-detail/local_widgets/item_product.dart';
 import 'package:buy_now/app/modules/order-detail/order_detail_controller.dart';
@@ -26,7 +27,17 @@ class OrderDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              body: body(_),
+              body: Stack(
+                children: [
+                  body( _ ),
+                  Obx((){
+                    return _.cargando.value ? Loading(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height
+                    ).build() : Center();
+                  })
+                ],
+              ),
             )
           ),
         );

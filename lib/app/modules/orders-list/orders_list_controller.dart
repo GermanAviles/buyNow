@@ -8,11 +8,13 @@ import 'package:get/get.dart';
 class OrderListController extends GetxController {
 
   BuildContext       _context;
-  final              firestoreService  = Get.find<DatabaseOrders>();
-  RxList<OrderModel> _orders           = <OrderModel>[].obs;
+  final              firestoreService   = Get.find<DatabaseOrders>();
+  RxList<OrderModel> _orders            = <OrderModel>[].obs;
+  Rx<bool>           _cargando          = true.obs;
 
-  BuildContext        get context => _context;
-  RxList<OrderModel>  get orders  => _orders;
+  BuildContext        get context  => _context;
+  RxList<OrderModel>  get orders   => _orders;
+  Rx<bool>            get cargando => _cargando;
 
   updateContext( BuildContext context ) {
     _context = context;
@@ -25,6 +27,7 @@ class OrderListController extends GetxController {
       for( final doc in event.docs ) {
         _orders.add( doc.data() );
       }
+    _cargando.value = false;
     });
   }
 

@@ -1,4 +1,5 @@
 
+import 'package:buy_now/app/global_widgets/loading.dart';
 import 'package:buy_now/app/modules/product-detail/product_detail_controller.dart';
 import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,17 @@ class ProductDetailPage extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: appbar( context ),
-            body: body(_),
+            body: Stack(
+              children: [
+                body( _ ),
+                Obx((){
+                  return _.cargando.value ? Loading(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height
+                  ).build() : Center();
+                })
+              ],
+            ),
           )
         );
       },

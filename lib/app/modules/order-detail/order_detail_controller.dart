@@ -8,12 +8,15 @@ import 'package:get/get.dart';
 class OrderDetailController extends GetxController {
 
   BuildContext    _context;
-  final           firestoreService    = Get.find<DatabaseOrders>();
-  Rx<OrderModel>  _order              = OrderModel().obs;
   Map<String, dynamic> paramsPage;
 
-  BuildContext  get context => _context;
-  OrderModel    get order   => _order.value;
+  final           firestoreService    = Get.find<DatabaseOrders>();
+  Rx<OrderModel>  _order              = OrderModel().obs;
+  Rx<bool>        _cargando           = true.obs;
+
+  BuildContext  get context  => _context;
+  OrderModel    get order    => _order.value;
+  Rx<bool>      get cargando => _cargando;
 
   updateContext( BuildContext context ) {
     _context = context;
@@ -30,6 +33,7 @@ class OrderDetailController extends GetxController {
   getOrder() async {
     paramsPage = Get.arguments;
     _order.value = await firestoreService.getOrder( paramsPage['uid'] );
+    _cargando.value = false;
   }
 
   @override

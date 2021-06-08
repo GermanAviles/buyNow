@@ -1,4 +1,5 @@
 
+import 'package:buy_now/app/global_widgets/loading.dart';
 import 'package:buy_now/app/modules/cart/cart_controller.dart';
 import 'package:buy_now/app/modules/cart/local_widgets/card_product.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,17 @@ class CartPage extends StatelessWidget {
                 style: GoogleFonts.ubuntu(),
               ),
             ),
-            body: body( _ ),
+            body: Stack(
+              children: [
+                body( _ ),
+                Obx((){
+                  return _.cargando.value ? Loading(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height
+                  ).build() : Center();
+                })
+              ],
+            ),
           )
         );
       }

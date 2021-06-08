@@ -1,4 +1,5 @@
 
+import 'package:buy_now/app/global_widgets/loading.dart';
 import 'package:buy_now/app/modules/orders-list/local_widgets/card_order.dart';
 import 'package:buy_now/app/modules/orders-list/orders_list_controller.dart';
 import 'package:buy_now/app/routes/pages.dart';
@@ -23,7 +24,17 @@ class OrderListPage extends StatelessWidget {
                 ),
               ),
             ),
-            body: body(_),
+            body: Stack(
+              children: [
+                body( _ ),
+                Obx((){
+                  return _.cargando.value ? Loading(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height
+                  ).build() : Center();
+                })
+              ],
+            ),
           )
         );
       },

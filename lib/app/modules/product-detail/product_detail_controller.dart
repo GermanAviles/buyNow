@@ -14,10 +14,12 @@ class ProductDetailController extends GetxController {
   final            firestoreService   = Get.find<DatabaseProducts>();
   final            carritoService     = Get.find<DatabaseShoppingCart>();
   Rx<ProductModel> _productModel      = ProductModel().obs;
+  Rx<bool>      _cargando             = true.obs;
 
   BuildContext get context          => _context;
   ProductModel get product          => _productModel.value;
   int          get cantidadComprar  => _cantidadComprar;
+  Rx<bool>     get cargando         => _cargando;
 
   updateContext( BuildContext context) {
     _context = context;
@@ -45,6 +47,7 @@ class ProductDetailController extends GetxController {
   }
 
   agregarProducto( Map<String, dynamic> product, carritos, bool navegar )async {
+    _cargando.value = true;
     final List<Map<String, dynamic>> productosDelCarrito = [];
 
     if (carritos.docs.length > 0) {
@@ -66,6 +69,7 @@ class ProductDetailController extends GetxController {
       final uids = await carritoService.createShoppingCart();
       carritoService.addProductToShoppingCart(uids['uidProductsCart'], productosDelCarrito);
     }
+    _cargando.value = false;
 
     if (navegar) {
       Navigator.pushNamed(context, Routes.CART);
@@ -75,6 +79,7 @@ class ProductDetailController extends GetxController {
 
   getProduct( String uid ) async {
    _productModel.value = await firestoreService.getProduct(uid);
+    _cargando.value = false;
   }
 
   @override

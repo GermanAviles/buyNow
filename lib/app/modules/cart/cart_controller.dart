@@ -18,9 +18,11 @@ class CartController extends GetxController {
   final         productsService       = Get.find<DatabaseProducts>();
   final         orderService          = Get.find<DatabaseOrders>();
   Rx<CartModel> _cart                 = CartModel().obs;
+  Rx<bool>      _cargando             = true.obs;
 
   BuildContext  get context  => _context;
   Rx<CartModel> get cart     => _cart;
+  Rx<bool>      get cargando => _cargando;
 
   updateContext( BuildContext context){
     _context = context;
@@ -41,6 +43,7 @@ class CartController extends GetxController {
 
       calcularTotal( carrito['productos'] );
     }
+    _cargando.value = false;
     update(['lista-productos']);
   }
 
@@ -61,6 +64,7 @@ class CartController extends GetxController {
   }
 
   crearOrden()async {
+    _cargando.value = true;
 
     Map<String, dynamic> orden = {
       'fechaCompra' : Timestamp.fromDate( DateTime.now() ),
@@ -71,23 +75,24 @@ class CartController extends GetxController {
 
     final orderId = await orderService.createOrder( orden );
     await shoppingCartService.updateStateShoppingCart(_cart.value.carritoId, 'completed');
-    print(orderId);
+    _cargando.value = false;
     Navigator.pushNamed(context, Routes.ORDERDETAIL, arguments: { 'uid': orderId, 'goHome': true });
   }
 
   eliminarProducto( int indexProduct ) {
+    _cargando.value = true;
     final idProd = _cart.value.productos[indexProduct]['producto_id'];
     final List<Map<String,dynamic>> productosFinales = [];
 
     for( final prod in _cart.value.productos ) {
       if (prod['producto_id'] != idProd) {
-        print('');
         productosFinales.add(prod);
       }
     }
     _cart.value.productos = productosFinales;
     calcularTotal(productosFinales);
     update(['lista-productos']);
+    _cargando.value = false;
     shoppingCartService.addProductToShoppingCart(_cart.value.id, productosFinales);
   }
 
