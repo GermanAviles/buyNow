@@ -63,7 +63,7 @@ class CardProducto{
                   Container(
                     child: Text(
                       this.descripcion,
-                      // overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.ubuntu(
                         fontSize: 16,
                         color: Colors.black
