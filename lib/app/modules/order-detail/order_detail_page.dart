@@ -14,18 +14,21 @@ class OrderDetailPage extends StatelessWidget {
     return GetBuilder<OrderDetailController>(
       builder: (_) {
         _.updateContext(context);
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(
-                'Detalle de la compra',
-                style: GoogleFonts.ubuntu(
-                  fontWeight: FontWeight.w600
+        return WillPopScope(
+          onWillPop: () => _.onBackPressed(),
+          child: SafeArea(
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(
+                  'Detalle de la compra',
+                  style: GoogleFonts.ubuntu(
+                    fontWeight: FontWeight.w600
+                  ),
                 ),
               ),
-            ),
-            body: body(_),
-          )
+              body: body(_),
+            )
+          ),
         );
       }
     );
@@ -43,7 +46,7 @@ class OrderDetailPage extends StatelessWidget {
 
         children: [
           Flexible(
-            flex: 2,
+            flex: 3,
             child: Obx((){
               return CardDetalle(
                 numero: _.order.numero ?? '',

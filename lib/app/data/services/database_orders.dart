@@ -23,10 +23,11 @@ class DatabaseOrders {
     }
   }
 
-  createOrder( Map<String, dynamic> order ) {
-    String uidOrder = _firestore.collection('pedidos').doc().toString();
+  Future<String> createOrder( Map<String, dynamic> order ) async {
+    String uidOrder = _firestore.collection('pedidos').doc().id.toString();
     order['id'] = uidOrder;
-    _firestore.collection('pedidos').doc(uidOrder).set( order );
+    await _firestore.collection('pedidos').doc(uidOrder).set( order );
+    return uidOrder;
   }
 
 }

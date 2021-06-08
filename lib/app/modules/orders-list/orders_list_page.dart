@@ -5,7 +5,6 @@ import 'package:buy_now/app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 class OrderListPage extends StatelessWidget {
 
@@ -46,7 +45,7 @@ class OrderListPage extends StatelessWidget {
             final order = _.orders[index];
             return GestureDetector(
               onTap: () {
-                Get.toNamed( Routes.ORDERDETAIL, arguments: order.id );
+                Get.toNamed( Routes.ORDERDETAIL, arguments: {'uid': order.id, 'goHome': false} );
               },
               child: CardOrder(
                 id: '${order.numero}',

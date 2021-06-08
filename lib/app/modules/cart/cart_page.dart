@@ -46,23 +46,26 @@ class CartPage extends StatelessWidget {
           children: [
             Expanded(
               flex: 11,
-              child: Obx((){
-                final products = _.cart.value.productos;
-                return ListView.builder(
-                  padding: EdgeInsets.symmetric( vertical: 10, horizontal: 5 ),
-                  itemCount: products?.length ?? 0,
-                  itemBuilder: (BuildContext context, index) {
-                    return ProductCard(
-                      nombre: products[index]['nombre'],
-                      cantidad: products[index]['cantidad'],
-                      precio: products[index]['precio'],
-                      width: width,
-                      height: 150,
-                      index: index
-                    ).build();
-                  },
-                );
-              })
+              child: GetBuilder<CartController>(
+                id: 'lista-productos',
+                builder: (_){
+                  final products = _.cart.value.productos;
+                  return ListView.builder(
+                    padding: EdgeInsets.symmetric( vertical: 10, horizontal: 5 ),
+                    itemCount: products?.length ?? 0,
+                    itemBuilder: (BuildContext context, index) {
+                      return ProductCard(
+                        nombre: products[index]['nombre'],
+                        cantidad: products[index]['cantidad'],
+                        precio: products[index]['precio'],
+                        width: width,
+                        height: 150,
+                        index: index
+                      ).build();
+                    },
+                  );
+                },
+              )
             ),
             Expanded(
               flex: 3,
@@ -135,7 +138,7 @@ class CartPage extends StatelessWidget {
                       // padding: EdgeInsets.only( bottom: 10 ),
                       // margin: EdgeInsets.only( bottom: 10 ),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: _.crearOrden,
                         color: Colors.blue,
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         child: Text(

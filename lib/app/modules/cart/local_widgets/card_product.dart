@@ -53,27 +53,31 @@ class ProductCard {
                 children: [
                   Flexible(
                     flex: 1,
-                    child: Stack(
-                      children: [
-                        Text(
-                          '${nombre ?? ''}',
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 17
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.delete_outline_sharp,
-                              color: Colors.red,
+                    child: GetBuilder<CartController>(
+                      builder: (_){
+                        return Stack(
+                          children: [
+                            Text(
+                              '${nombre ?? ''}',
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 17
+                              ),
                             ),
-                            onPressed: (){}
-                          )
-                        ),
-                      ],
-                    ),
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.delete_outline_sharp,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () => _.eliminarProducto(index)
+                              )
+                            ),
+                          ],
+                        );
+                      },
+                    )
                   ),
                   Flexible(
                     flex: 3,
@@ -98,8 +102,6 @@ class ProductCard {
                                     contentPadding: EdgeInsets.symmetric( vertical: 0, horizontal: 10 ),
                                     labelStyle: GoogleFonts.ubuntu(),
                                     hintStyle: GoogleFonts.ubuntu(),
-                                    // labelText: 'Cantidad a comprar: 1',
-                                    // hintText: '1',
                                     filled: true,
                                     fillColor: Colors.grey[100],
                                     enabledBorder: OutlineInputBorder(
