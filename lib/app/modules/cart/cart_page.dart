@@ -5,6 +5,9 @@ import 'package:buy_now/app/modules/cart/local_widgets/card_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+final currencyFormat = new NumberFormat("#,##0", "es_CO");
 
 class CartPage extends StatelessWidget {
   // const CartPage({ Key? key }) : super(key: key);
@@ -146,7 +149,7 @@ class CartPage extends StatelessWidget {
                             builder: (_){
                               return Container(
                                 child: Text(
-                                  '\$ ${ _.cart.value.total != null ? _.cart.value.total.toStringAsFixed(0) : ''  }',
+                                  '\$ ${ currencyFormat.format( _.cart.value?.total ?? '' ) }',
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w700
